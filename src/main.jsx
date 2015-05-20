@@ -19,7 +19,9 @@ class App extends React.Component {
 
         return (
             <div className="container">
-                <h1>Hello React</h1>
+                <h1>Hello Immutable</h1>
+                <button onClick={ appStore.load }>Load</button>
+                <button onClick={ appStore.save }>Save</button>
                 <ul className="Toggle-container">
                     { items }
                 </ul>
@@ -33,3 +35,5 @@ function render() {
 }
 
 render()
+
+appStore.on( 'swap', render )

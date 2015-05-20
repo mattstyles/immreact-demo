@@ -2,12 +2,14 @@
 .Toggle-container {
     padding: 0;
     border-top: 3px solid @--color-red;
+    border-radius: 4px;
 }
 
 .Toggle {
     display:inline-block;
-    min-width: 300px;
-    padding: 6px 0px;
+    box-sizing: border-box;
+    min-width: 480px;
+    padding: 6px 18px;
     font-size: 20px;
     line-height: 34px;
     background: @--color-white;
@@ -25,8 +27,8 @@
 
 .Toggle-indicator {
     display: inline-block;
-    width: 34px;
-    height: 34px;
+    width: 24px;
+    height: 24px;
     margin-right: 20px;
     border-radius: 200px;
     background: @--color-red;

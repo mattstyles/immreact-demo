@@ -11,8 +11,15 @@ export default class Toggle extends React.Component {
         foo: 'foo'
     }
 
-    myOnClick = () => {
-        console.log( this )
+    // Either updating or setting works just fine
+    onClick = () => {
+        // this.props.cursor.update( data => {
+        //     return this.props.cursor.merge({
+        //         toggle: !this.props.cursor.get( 'toggle' )
+        //     })
+        // })
+
+        this.props.cursor.set( 'toggle', !this.props.cursor.get( 'toggle' ) )
     }
 
     render() {
@@ -22,7 +29,7 @@ export default class Toggle extends React.Component {
         })
 
         return (
-            <li className="Toggle">
+            <li className="Toggle" onClick={ this.onClick }>
                 <span className={ toggleClasses }></span>
                 <span className="Toggle-text">{ this.props.cursor.get( 'text' )}</span>
             </li>
