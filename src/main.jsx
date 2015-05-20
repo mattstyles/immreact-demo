@@ -3,7 +3,7 @@ import './utils/font'
 
 import React from 'react'
 
-import dispatcher from './dispatchers/appDispatcher'
+import appStore from './stores/appStore'
 import Toggle from 'toggle'
 
 
@@ -14,17 +14,22 @@ class App extends React.Component {
     }
 
     render() {
-        function get( i ) {
-            return i === 'text' ? 'some text' : true
-        }
+
+        let items = this.props.cursor.toList().map( item => <Toggle cursor={ item } /> )
 
         return (
             <div className="container">
                 <h1>Hello React</h1>
-                <Toggle cursor={{get: get}} />
+                <ul className="Toggle-container">
+                    { items }
+                </ul>
             </div>
         )
     }
 }
 
-React.render( <App />, document.body )
+function render() {
+    React.render( <App cursor={ appStore.cursor() } />, document.body )
+}
+
+render()
