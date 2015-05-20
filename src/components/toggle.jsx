@@ -23,8 +23,8 @@ export default class Toggle extends React.Component {
 
         return (
             <li className="Toggle">
-                <span className="Toggle-text">{ this.props.cursor.get( 'text' )}</span>
                 <span className={ toggleClasses }></span>
+                <span className="Toggle-text">{ this.props.cursor.get( 'text' )}</span>
             </li>
         )
     }

@@ -1,0 +1,37 @@
+
+.Toggle-container {
+    padding: 0;
+    border-top: 3px solid @--color-red;
+}
+
+.Toggle {
+    display:inline-block;
+    min-width: 300px;
+    padding: 6px 0px;
+    font-size: 20px;
+    line-height: 34px;
+    background: @--color-white;
+    border-bottom: 1px solid @--color-white20;
+
+    &:hover {
+        background: @--color-white30;
+        cursor: pointer;
+    }
+
+    span {
+        vertical-align:middle;
+    }
+}
+
+.Toggle-indicator {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    margin-right: 20px;
+    border-radius: 200px;
+    background: @--color-red;
+    transition: background .1777s ease-out;
+}
+.Toggle-indicator--isOn {
+    background: @--color-green;
+}
