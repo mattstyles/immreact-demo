@@ -2,7 +2,7 @@
 import React from 'react'
 import classNames from 'classnames'
 
-export default class Toggle extends React.Component {
+class Toggle extends React.Component {
     constructor( props ) {
         super( props )
     }
@@ -33,6 +33,31 @@ export default class Toggle extends React.Component {
                 <span className={ toggleClasses }></span>
                 <span className="Toggle-text">{ this.props.cursor.get( 'text' )}</span>
             </li>
+        )
+    }
+}
+
+
+
+
+export default class ToggleList extends React.Component {
+    constructor() {
+        super()
+    }
+
+    render() {
+        let itemData = this.props.cursor.toList()
+        let items = itemData.size > 0
+            ? itemData.map( item => <Toggle cursor={ item } /> )
+            : <span className="Toggle-loader">Fetching, 2 secs...</span>
+
+        return (
+            <div className="Toggle-wrapper">
+                <h2 className="Toggle-title">Github Users</h2>
+                <ul className="Toggle-container">
+                    { items }
+                </ul>
+            </div>
         )
     }
 }

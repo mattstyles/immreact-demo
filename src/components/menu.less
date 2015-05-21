@@ -1,0 +1,58 @@
+@--Menu-paddingLeft: 30px;
+@--Menu-itemHeight: 54px;
+
+
+.Menu {
+    display: block;
+    width: 300px;
+    float: left;
+}
+
+.Menu-titleMain {
+    padding-left: @--Menu-paddingLeft;
+    margin-top: 0px;
+}
+
+.Menu-actions {
+    padding: 0px;
+    list-style-type: none;
+}
+
+.Menu-action {
+    display: block;
+    position: relative;
+    color: @--color-black30;
+    border-left: 4px solid transparent;
+
+    &:hover {
+        background: @--color-white;
+        border-left: 4px solid @--color-red;
+    }
+}
+.Menu-actionButton {
+    padding-left: @--Menu-paddingLeft;
+    line-height: @--Menu-itemHeight;
+    width: 100%;
+    border: none;
+    text-align: left;
+    background: transparent;
+}
+
+.Menu-loadText {
+    width: 300px;
+    float:left;
+}
+.Menu-loadMore {
+    position: absolute;
+    width: @--Menu-itemHeight;
+    height: @--Menu-itemHeight;
+    right: 0;
+    top: 0;
+    border: none;
+    padding: 0px;
+
+    i {
+        top: 18px;
+        bottom: 9px;
+    }
+}
