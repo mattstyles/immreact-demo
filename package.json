@@ -60,6 +60,7 @@
     "normalize.css": "^3.0.3",
     "react": "^0.13.3",
     "react-router": "^0.13.3",
+    "uuid": "^2.0.1",
     "webfontloader": "^1.5.18",
     "whatwg-fetch": "^0.8.1"
   },

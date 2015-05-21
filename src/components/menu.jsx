@@ -37,8 +37,8 @@ class LoadItem extends React.Component {
         })
     }
 
-    onLoadClick( event ) {
-        appStore.load()
+    onLoadClick( event, id ) {
+        appStore.load( id ? JSON.parse( window.localStorage.getItem( id ) ) : null )
     }
 
     onInputChange( event ) {
@@ -49,6 +49,24 @@ class LoadItem extends React.Component {
         let loadStates = <span></span>
         if ( this.state.open ) {
 
+            let items = appStore.registry
+                .map( id => {
+                    return {
+                        fullId: id,
+                        short: id.split( '/' )[ 1 ].split( '-' )[ 0 ]
+                    }
+                })
+                .map( ids => {
+                    function onClick( event ) {
+                        this.onLoadClick.call( this, event, ids.fullId )
+                    }
+
+                    return (
+                        <li className="Menu-action Menu-actionInner">
+                            <button className="Menu-actionButton Menu-actionInnerButton" onClick={ onClick.bind( this ) }>{ ids.short }</button>
+                        </li>
+                    )
+                })
 
             loadStates = (
                 <ul className="Load-loadStates">
@@ -61,9 +79,7 @@ class LoadItem extends React.Component {
                             onChange={ this.onInputChange.bind( this ) }
                         />
                     </li>
-                    <li className="Menu-action Menu-actionInner">
-                        <button className="Menu-actionButton Menu-actionInnerButton" onClick={ this.onLoadClick.bind( this ) }>From localstorage</button>
-                    </li>
+                    { items }
                 </ul>
             )
         }
@@ -82,6 +98,7 @@ class LoadItem extends React.Component {
                     <button className="Menu-actionButton Menu-loadMore" onClick={ this.onMoreClick.bind( this ) }><Icon icon="MORE" /></button>
                 </div>
                 { loadStates }
+                
             </li>
         )
     }
