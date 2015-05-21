@@ -1,12 +1,15 @@
 
 import immstruct from 'immstruct'
+import EventEmitter from 'eventemitter3'
 import random from 'lodash.random'
 import uuid from 'uuid'
 
 import LS from 'constants/storage'
 
-class AppStore {
+class AppStore extends EventEmitter {
     constructor() {
+        super()
+
         this.state = immstruct( 'app', [] )
 
         this.registry = JSON.parse( window.localStorage.getItem( LS.REGISTRY ) ) || []
@@ -47,6 +50,8 @@ class AppStore {
         if ( this.registry.length > 10 ) {
             this.registry.shift()
         }
+
+        this.emit( 'change' )
 
         window.localStorage.setItem( LS.REGISTRY, JSON.stringify( this.registry ) )
         window.localStorage.setItem( id, appData )

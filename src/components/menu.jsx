@@ -27,8 +27,17 @@ class LoadItem extends React.Component {
         super( props )
 
         this.state = {
-            open: false
+            open: false,
+            registry: appStore.registry
         }
+    }
+
+    componentDidMount() {
+        appStore.on( 'change', () => {
+            this.setState({
+                registry: appStore.registry
+            })
+        })
     }
 
     onMoreClick( event ) {
@@ -49,7 +58,7 @@ class LoadItem extends React.Component {
         let loadStates = <span></span>
         if ( this.state.open ) {
 
-            let items = appStore.registry
+            let items = this.state.registry
                 .map( id => {
                     return {
                         fullId: id,
@@ -98,7 +107,6 @@ class LoadItem extends React.Component {
                     <button className="Menu-actionButton Menu-loadMore" onClick={ this.onMoreClick.bind( this ) }><Icon icon="MORE" /></button>
                 </div>
                 { loadStates }
-                
             </li>
         )
     }
@@ -126,6 +134,9 @@ export default class Menu extends React.Component {
                     <LoadItem onClick={ this.onLoad.bind( this ) } text="Load" />
                     <MenuItem onClick={ this.onSave.bind( this ) } text="Save" />
                 </ul>
+                <div className="Menu-disclaimer">
+                    <p>This is not an exit.</p>
+                </div>
             </div>
         )
     }
