@@ -10,7 +10,7 @@ class AppStore {
         this.state = immstruct( 'app', [] )
 
         // Grab some dummy data from github and load it in
-        fetch( 'https://api.github.com/users' )
+        fetch( 'https://api.github.com/users?since=' + random( 100000 ) )
             .then( res => res.json() )
             .then( users => {
                 this.load( users.map( user => {
