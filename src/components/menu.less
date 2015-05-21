@@ -30,7 +30,7 @@
     }
 }
 .Menu-actionButton {
-    padding-left: @--Menu-paddingLeft;
+    padding: 0px 0px 0px @--Menu-paddingLeft;
     line-height: @--Menu-itemHeight;
     width: 100%;
     border: none;
@@ -38,6 +38,9 @@
     background: transparent;
 }
 
+.Menu-loadMain {
+    height: @--Menu-itemHeight;
+}
 .Menu-loadText {
     width: 300px;
     float:left;
@@ -52,7 +55,30 @@
     padding: 0px;
 
     i {
-        top: 18px;
-        bottom: 9px;
+        top: 16px;
+        height: @--Menu-itemHeight / 2;
     }
+}
+
+.Menu-load--isOpen {
+    background: @--color-white;
+    border-left: 4px solid @--color-green;
+
+    &:hover {
+        border-left: 4px solid @--color-green;
+    }
+}
+
+.Load-loadStates {
+    padding: 0px;
+}
+
+.Menu-actionInner {
+    border-left: 0px solid transparent;
+    &:hover {
+        border-left: 0px solid transparent;
+    }
+}
+.Menu-actionInnerButton {
+    
 }
