@@ -19,15 +19,6 @@ const data = (function() {
 class AppStore {
     constructor() {
         this.structure = immstruct( 'app', data )
-        window.s = this.structure
-
-        for ( let prop in this.structure ) {
-            if ( !this[ prop ] ) {
-                this[ prop ] = this.structure[ prop ]
-            } else {
-                console.warn( 'prop already exists on AppStore', prop )
-            }
-        }
     }
 
     load = () => {
@@ -35,13 +26,15 @@ class AppStore {
         this.structure.cursor().update( cursor => {
             console.log( window.localStorage.getItem( LS_ID ) )
             console.log( cursor )
-            return JSON.parse( window.localStorage.getItem( LS_ID ) )
+            return cursor.merge( JSON.parse( window.localStorage.getItem( LS_ID ) ) )
         })
     }
 
     save = () => {
         console.log( 'saving' )
-        window.localStorage.setItem( LS_ID, JSON.stringify( this.structure.cursor().deref().toJSON() ) )
+        let appData = JSON.stringify( this.structure.cursor().deref().toJSON() )
+        console.log( appData )
+        window.localStorage.setItem( LS_ID, appData )
     }
 }
 
