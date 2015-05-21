@@ -31,9 +31,9 @@ class App extends React.Component {
 }
 
 function render() {
-    React.render( <App cursor={ appStore.structure.cursor() } />, document.body )
+    React.render( <App cursor={ appStore.data.cursor() } />, document.body )
 }
 
 render()
 
-appStore.structure.on( 'swap', render )
+appStore.data.on( 'swap', render )
