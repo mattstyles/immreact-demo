@@ -5,28 +5,27 @@ import random from 'lodash.random'
 
 const LS_ID = 'immutable-test'
 
-const text = 'same shit different day it just goes round'.split( ' ' )
-
-const data = (function() {
-    return range( 10 ).map( () => {
-        return {
-            text: text[ random( text.length - 1 ) ],
-            toggle: random( 1 ) === 0
-        }
-    })
-})()
-
 class AppStore {
     constructor() {
-        this.state = immstruct( 'app', data )
+        this.state = immstruct( 'app', [] )
+
+        // Grab some dummy data from github and load it in
+        fetch( 'https://api.github.com/users' )
+            .then( res => res.json() )
+            .then( users => {
+                this.load( users.map( user => {
+                    return {
+                        text: user.login,
+                        toggle: random( 1 ) === 0
+                    }
+                }))
+            })
     }
 
-    load = () => {
+    load = ( data ) => {
         console.log( 'loading' )
         this.state.cursor().update( cursor => {
-            console.log( window.localStorage.getItem( LS_ID ) )
-            console.log( cursor )
-            return cursor.merge( JSON.parse( window.localStorage.getItem( LS_ID ) ) )
+            return cursor.merge( data || JSON.parse( window.localStorage.getItem( LS_ID ) ) )
         })
     }
 

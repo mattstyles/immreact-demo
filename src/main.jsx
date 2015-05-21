@@ -14,7 +14,8 @@ class App extends React.Component {
     }
 
     render() {
-
+        let itemData = this.props.cursor.toList()
+        console.log( itemData )
         let items = this.props.cursor.toList().map( item => <Toggle cursor={ item } /> )
 
         return (
@@ -22,6 +23,7 @@ class App extends React.Component {
                 <h1>Hello Immutable</h1>
                 <button onClick={ appStore.load }>Load</button>
                 <button onClick={ appStore.save }>Save</button>
+                <h2 className="table-title">Github Users</h2>
                 <ul className="Toggle-container">
                     { items }
                 </ul>
