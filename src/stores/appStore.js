@@ -18,12 +18,12 @@ const data = (function() {
 
 class AppStore {
     constructor() {
-        this.data = immstruct( 'app', data )
+        this.state = immstruct( 'app', data )
     }
 
     load = () => {
         console.log( 'loading' )
-        this.data.cursor().update( cursor => {
+        this.state.cursor().update( cursor => {
             console.log( window.localStorage.getItem( LS_ID ) )
             console.log( cursor )
             return cursor.merge( JSON.parse( window.localStorage.getItem( LS_ID ) ) )
@@ -32,7 +32,7 @@ class AppStore {
 
     save = () => {
         console.log( 'saving' )
-        let appData = JSON.stringify( this.data.cursor().deref().toJSON() )
+        let appData = JSON.stringify( this.state.cursor().deref().toJSON() )
         console.log( appData )
         window.localStorage.setItem( LS_ID, appData )
     }
