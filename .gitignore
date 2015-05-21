@@ -1,3 +1,8 @@
 dist
 node_modules
 *.log
+src
+spec
+bin
+.*
+
