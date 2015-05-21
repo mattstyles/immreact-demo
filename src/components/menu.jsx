@@ -38,9 +38,11 @@ class LoadItem extends React.Component {
     }
 
     onLoadClick( event ) {
-        console.log( event.currentTarget )
-        
         appStore.load()
+    }
+
+    onInputChange( event ) {
+        appStore.load( JSON.parse( event.currentTarget.value ) )
     }
 
     render() {
@@ -50,6 +52,15 @@ class LoadItem extends React.Component {
 
             loadStates = (
                 <ul className="Load-loadStates">
+                    <li className="Menu-action Menu-actionInner">
+                        <label htmlFor="Load-input" className="Load-inputLabel">Input:</label>
+                        <input
+                            id="Load-input"
+                            className="Load-input"
+                            placeholder="paste appData"
+                            onChange={ this.onInputChange.bind( this ) }
+                        />
+                    </li>
                     <li className="Menu-action Menu-actionInner">
                         <button className="Menu-actionButton Menu-actionInnerButton" onClick={ this.onLoadClick.bind( this ) }>From localstorage</button>
                     </li>

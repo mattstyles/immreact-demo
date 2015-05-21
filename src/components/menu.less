@@ -47,6 +47,7 @@
 }
 .Menu-loadMore {
     position: absolute;
+    z-index: 10;
     width: @--Menu-itemHeight;
     height: @--Menu-itemHeight;
     right: 0;
@@ -75,10 +76,25 @@
 
 .Menu-actionInner {
     border-left: 0px solid transparent;
+
+    &:first-child {
+        background: @--color-white10;
+    }
+
     &:hover {
         border-left: 0px solid transparent;
     }
 }
 .Menu-actionInnerButton {
-    
+
+}
+
+.Load-inputLabel {
+    padding-left: @--Menu-paddingLeft;
+    padding-right: @--Menu-paddingLeft / 2;
+    line-height: @--Menu-itemHeight * .8;
+}
+.Load-input {
+    height: @--Menu-itemHeight * .5;
+    padding-left: @--Menu-paddingLeft * .333;
 }
